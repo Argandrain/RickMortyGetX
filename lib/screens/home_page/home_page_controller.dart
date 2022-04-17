@@ -13,7 +13,8 @@ class HomePageController extends GetxController {
 
   final ScrollController scrollController = ScrollController();
 
-  HomePageController() {
+  @override
+  void onInit() {
     downloadNextPage();
     scrollController.addListener(() {
       if ((scrollController.position.pixels >
@@ -21,7 +22,13 @@ class HomePageController extends GetxController {
           (!onAwait.value)) {
         downloadNextPage();
       }
+      super.onInit();
     });
+  }
+
+  @override
+  void onClose() {
+    scrollController.dispose();
   }
 
   Future<void> downloadNextPage() async {

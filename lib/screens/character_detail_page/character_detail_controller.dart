@@ -7,8 +7,12 @@ class CharacterDetailController extends GetxController {
   final int _id;
   Rx<CharacterDetail> character = CharacterDetail().obs;
   RxBool onAwait = false.obs;
-  CharacterDetailController({required int id}) : _id = id {
+  CharacterDetailController({required int id}) : _id = id;
+
+  @override
+  void onInit() {
     downloadCharacterDetail();
+    super.onInit();
   }
 
   Future<void> downloadCharacterDetail() async {
